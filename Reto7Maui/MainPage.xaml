@@ -1,0 +1,262 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Reto7Maui.MainPage"
+             Shell.NavBarIsVisible="False">
+
+    <ScrollView>
+        <Grid Margin="15" RowDefinitions=".1*,.2*,.1*,.1*,.2*,.1*,.2*">
+            <Grid ColumnDefinitions="*,*" Grid.Row="0">
+                <Border Grid.Column="0"
+                        Margin="15,35,0,0"
+                        Background="{StaticResource DrakGray}"
+                        HeightRequest="50"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Start"
+                        WidthRequest="50">
+                    <!--esto es para hacer que el cuadrito sea redondeado -->
+
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="10,10,10,10"/>
+                    </Border.StrokeShape>
+                    <!--Esto es para poner el icono -->
+                    <Label
+                        FontFamily="Icons"
+                        FontSize="25"
+                        HorizontalOptions="Center"
+                        Text="&#xe810;"
+                        HorizontalTextAlignment="Center"
+                        TextColor="{StaticResource White}"
+                        VerticalOptions="Center"
+                        />
+                </Border>
+
+                <Border Grid.Column="1"
+                        Margin="0,35,15,0"
+                        Background="{StaticResource DrakGray}"
+                        HeightRequest="50"
+                        HorizontalOptions="End"
+                        VerticalOptions="Start"
+                        WidthRequest="50">
+                    <!--esto es para hacer que el cuadrito sea redondeado -->
+
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="10,10,10,10"/>
+                    </Border.StrokeShape>
+                    <!--Esto es para poner el icono -->
+                    <Label
+                        FontFamily="Icons"
+                        FontSize="30"
+                        HorizontalOptions="Center"
+                        Text="&#xe809;"
+                        HorizontalTextAlignment="Center"
+                        TextColor="{StaticResource White}"
+                        VerticalOptions="Center"
+                        />
+                </Border>
+                
+            </Grid>
+            <Label
+                Margin="0,50,0,10"
+                Grid.Row="1"
+                Text="Excelente café &#10;En cualquier Momento y lugar"
+                FontSize="25"
+                TextColor="White"
+                FontAttributes="Bold"
+                >
+              
+            </Label>
+             
+            <Grid Grid.Row="2">
+                <Border Grid.ColumnSpan="2"
+                        BackgroundColor="{StaticResource DarkGray}"
+                        HeightRequest="50"
+                        >
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="20,20,20,20"/>
+                    </Border.StrokeShape>
+                    <Grid ColumnDefinitions=".1*,.8*">
+                        <Label
+                            Grid.Column="0"
+                            FontFamily="Icons"
+                            FontSize="25"
+                            HorizontalOptions="Center"
+                            Text="&#xe802;"
+                            HorizontalTextAlignment="Start"
+                            TextColor="{StaticResource White}"
+                            VerticalOptions="Center"
+                            />
+                        <Entry Placeholder="Busca tu café..." Grid.Column="1"></Entry>
+                    </Grid>
+                </Border>
+                
+            </Grid>
+            <HorizontalStackLayout
+                Grid.Row="3"
+                    RadioButtonGroup.GroupName="Categorias"
+                    Spacing="50"
+                    VerticalOptions="Center"
+>
+                <BindableLayout.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Capuccino</x:String>
+                        <x:String>ColdBrew</x:String>
+                        <x:String>Starbucks</x:String>
+                    </x:Array>
+                </BindableLayout.ItemsSource>
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <RadioButton Content="{Binding .}">
+                            <RadioButton.ControlTemplate>
+                                <ControlTemplate>
+                                    <Grid>
+                                        <!-- Borde redondeado de los botones-->
+                                        <Border x:Name="Container"
+                                                Stroke="{StaticResource BGGray}"
+                                                WidthRequest="100"> 
+                                            <Border.StrokeShape>
+                                                <RoundRectangle CornerRadius="10,10,10,10"/>
+                                            </Border.StrokeShape>
+                                            <Label
+                                                    x:Name="TextLabel"
+                                                    HorizontalOptions="Center"
+                                                    Text="{TemplateBinding Content}"
+                                                    VerticalOptions="Center"
+                                                    />  
+                                        </Border>
+                                        <!--Estilo de los botones-->
+                                        <VisualStateManager.VisualStateGroups>
+                                            <VisualStateGroupList>
+                                                <VisualStateGroup x:Name="CheckedStates">
+                                                    <VisualState x:Name="Checked">
+                                                        <VisualState.Setters>
+                                                            <Setter TargetName="TextLabel" Property="Label.TextColor" Value="{StaticResource Brown}"/>
+                                                            <Setter TargetName="Container" Property="Border.BackgroundColor" Value="{StaticResource BGGray}"/>
+                                                            <Setter TargetName="Container" Property="Border.Stroke" Value="{StaticResource Brown}"/>
+                                                        </VisualState.Setters>
+                                                    </VisualState>
+                                                    <VisualState x:Name="Unchecked">
+                                                        <VisualState.Setters>
+                                                            <Setter TargetName="TextLabel" Property="Label.TextColor" Value="{StaticResource LightGray}"/>
+                                                            <Setter TargetName="Container" Property="Border.BackgroundColor" Value="{StaticResource DrakGray}"/>
+                                                            <Setter TargetName="Container" Property="Border.Stroke" Value="{StaticResource DrakGray}"/>
+
+
+                                                        </VisualState.Setters>
+                                                    </VisualState>
+                                                </VisualStateGroup>
+                                            </VisualStateGroupList>
+                                        </VisualStateManager.VisualStateGroups>
+                                    </Grid>
+                                </ControlTemplate>
+                            </RadioButton.ControlTemplate>
+                        </RadioButton>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </HorizontalStackLayout>
+
+            <Grid Grid.Row="4" ColumnDefinitions="*,*" ColumnSpacing="10">
+                <Border Grid.Column="0" Background="{StaticResource DarkGray}" HeightRequest="270">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="10,10,10,10"/>
+                    </Border.StrokeShape>
+                    <VerticalStackLayout>
+                        <Border Margin="5,5,5,5">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="10,10,10,10"/>
+                            </Border.StrokeShape>
+                            <Image 
+                               Aspect="AspectFill"
+                               Source="cafe_corazon.webp"
+                            />
+                        </Border>
+                        <Label
+                            Margin="5,0,0,0"
+                            Text="Cafe Corazon"
+                            TextColor="White"
+                            FontSize="20"
+                            FontAttributes="Bold"
+                            />
+                        <Label
+                            Margin="5,10,0,10"
+                            Text="Dark roost"
+                            TextColor="White"
+                            FontSize="12"
+                            FontAttributes="Bold"
+                            />
+                        <Grid ColumnDefinitions="*,*">
+                            <Label Margin="5,0,0,0"
+                                Grid.Column="0"
+                                Text="$5.00"
+                                TextColor="White"
+                                FontSize="20"
+                                />
+                            <Button
+                                x:Name="BtnAddCaffUno"
+                                Clicked="BtnAddCaffUno_Clicked"
+                                FontFamily="Icons"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Center"
+                                WidthRequest="40"
+                                HeightRequest="40"
+                                Grid.Column="1"
+                                Text="&#xe819;"
+                                BackgroundColor="{StaticResource Orange}"
+                                />
+                        </Grid>
+                    </VerticalStackLayout>
+                </Border>
+                <Border Grid.Column="1" Background="{StaticResource DarkGray}" HeightRequest="270">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="10,10,10,10"/>
+                        
+                    </Border.StrokeShape>
+                    <VerticalStackLayout>
+                        <Border Margin="5,5,5,5">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="10,10,10,10"/>
+                            </Border.StrokeShape>
+                            <Image 
+                               Aspect="AspectFill"
+                               Source="cafe_corazon.webp"
+                            />  
+                        </Border>
+                        <Label
+                            Margin="5,0,0,0"
+                            Text="Cafe Corazon"
+                            TextColor="White"
+                            FontSize="20"
+                            FontAttributes="Bold"
+                            />
+                        <Label
+                            Margin="5,10,0,10"
+                            Text="Dark roost"
+                            TextColor="White"
+                            FontSize="12"
+                            FontAttributes="Bold"
+                            />
+                        <Grid ColumnDefinitions="*,*">
+                            <Label Margin="5,0,0,0"
+                                Grid.Column="0"
+                                Text="$5.00"
+                                TextColor="White"
+                                FontSize="20"
+                                />
+                            <Button 
+                                FontFamily="Icons"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Center"
+                                WidthRequest="40"
+                                HeightRequest="40"
+                                Grid.Column="1"
+                                Text="&#xe819;"
+                                BackgroundColor="{StaticResource Orange}"
+                                />
+                        </Grid>
+                    </VerticalStackLayout>
+                </Border>
+            </Grid>
+        </Grid>
+    </ScrollView>
+
+</ContentPage>
